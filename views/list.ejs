@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>People List</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>People Management</h1>
+        
+        <div class="actions">
+            <a href="/person/new" class="btn btn-primary">Add New Person</a>
+        </div>
+
+        <% if (people.length === 0) { %>
+            <div class="empty-state">
+                <p>No people found. <a href="/person/new">Add your first person</a></p>
+            </div>
+        <% } else { %>
+            <div class="people-table-wrapper">
+                <table class="people-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Mobile Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% people.forEach(person => { %>
+                            <tr>
+                                <td><%= person.name %></td>
+                                <td><%= person.age %></td>
+                                <td><%= person.gender %></td>
+                                <td><%= person.mobileNumber %></td>
+                                <td class="actions-cell">
+                                    <a href="/person/<%= person._id %>/edit" class="btn btn-sm btn-edit">Edit</a>
+                                    <a href="/person/<%= person._id %>/delete" class="btn btn-sm btn-delete">Delete</a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
+
+
